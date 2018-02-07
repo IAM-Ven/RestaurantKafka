@@ -22,6 +22,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/kitchen/kitchen_main.iml" filepath="$PROJECT_DIR$/.idea/modules/kitchen/kitchen_main.iml" group="kitchen" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/kitchen/kitchen_test.iml" filepath="$PROJECT_DIR$/.idea/modules/kitchen/kitchen_test.iml" group="kitchen" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/modules.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/modules.iml" group="modules" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/common/modules-common_main.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/common/modules-common_main.iml" group="modules/common" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/common/modules-common_test.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/common/modules-common_test.iml" group="modules/common" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/customer/modules-customer_main.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/customer/modules-customer_main.iml" group="modules/customer" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/customer/modules-customer_test.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/customer/modules-customer_test.iml" group="modules/customer" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/kitchen/modules-kitchen_main.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/kitchen/modules-kitchen_main.iml" group="modules/kitchen" />

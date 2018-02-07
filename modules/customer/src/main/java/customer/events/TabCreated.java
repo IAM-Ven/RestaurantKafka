@@ -7,18 +7,27 @@ import java.util.UUID;
 
 public class TabCreated implements ParentEvent {
     private String name;
-    private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    private Date date=new Date();
     private String timeCreated;
-    private final UUID uuid;
+    private  UUID uuid;
     private EventType eventType;
 
+public TabCreated(){}
 
-    public TabCreated(String name) {
-        this.name=name;
-        timeCreated=dateFormat.format(date);
-        this.uuid = UUID.randomUUID();
-        eventType= EventType.TAB_CREATED;
+//    public TabCreated(String name) {
+//        this.name=name;
+//        this.uuid = UUID.randomUUID();
+//        eventType= EventType.TAB_CREATED;
+//    }
+
+
+
+
+    public void setTimeCreated(String timeCreated) {
+        this.timeCreated = timeCreated;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public String getName() {
