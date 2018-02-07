@@ -1,0 +1,4 @@
+rootProject.name = 'RestaurantKafka'
+include 'modules:customer'
+include 'modules:kitchen'
+

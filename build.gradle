@@ -1,0 +1,65 @@
+
+//task wrapper(type: Wrapper) {
+//   gradleVersion = '4.4.1'
+//}
+
+buildscript {
+    ext {
+        springBootVersion = '2.0.0.M6'
+    }
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+allprojects {
+    apply plugin: 'java'
+    //apply plugin: 'eclipse'
+
+    sourceCompatibility = 1.8
+
+    group = 'com.edi'
+    version = '0.0.1-SNAPSHOT'
+
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+}
+
+// za BOOT potprojekte
+configure(subprojects.findAll { it.name!='modules' }) {
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    ext {
+        springCloudVersion = 'Finchley.M4'
+    }
+
+    dependencies {
+        compile('org.springframework.cloud:spring-cloud-stream')
+        compile('org.springframework.cloud:spring-cloud-stream-binder-kafka')
+
+        //compile('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
+        //	compile('org.springframework.boot:spring-boot-starter-webflux')
+        	runtime('org.springframework.boot:spring-boot-devtools')
+
+       // compile project(':modules:common')
+
+        testCompile('org.springframework.boot:spring-boot-starter-test')
+        testCompile('io.projectreactor:reactor-test')
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+}

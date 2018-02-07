@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Desktop-RestaurantKafka_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Desktop-RestaurantKafka_main.iml" group="RestaurantKafka" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Desktop-RestaurantKafka_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Desktop-RestaurantKafka_test.iml" group="RestaurantKafka" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RestaurantKafka.iml" filepath="$PROJECT_DIR$/.idea/modules/RestaurantKafka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/customer/RestaurantKafka-customer_main.iml" filepath="$PROJECT_DIR$/.idea/modules/customer/RestaurantKafka-customer_main.iml" group="customer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/customer/RestaurantKafka-customer_main~1.iml" filepath="$PROJECT_DIR$/.idea/modules/customer/RestaurantKafka-customer_main~1.iml" group="customer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/customer/RestaurantKafka-customer_test.iml" filepath="$PROJECT_DIR$/.idea/modules/customer/RestaurantKafka-customer_test.iml" group="customer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/customer/RestaurantKafka-customer_test~1.iml" filepath="$PROJECT_DIR$/.idea/modules/customer/RestaurantKafka-customer_test~1.iml" group="customer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kitchen/RestaurantKafka-kitchen_main.iml" filepath="$PROJECT_DIR$/.idea/modules/kitchen/RestaurantKafka-kitchen_main.iml" group="kitchen" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kitchen/RestaurantKafka-kitchen_main~1.iml" filepath="$PROJECT_DIR$/.idea/modules/kitchen/RestaurantKafka-kitchen_main~1.iml" group="kitchen" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kitchen/RestaurantKafka-kitchen_test.iml" filepath="$PROJECT_DIR$/.idea/modules/kitchen/RestaurantKafka-kitchen_test.iml" group="kitchen" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kitchen/RestaurantKafka-kitchen_test~1.iml" filepath="$PROJECT_DIR$/.idea/modules/kitchen/RestaurantKafka-kitchen_test~1.iml" group="kitchen" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RestaurantKafka_main.iml" filepath="$PROJECT_DIR$/.idea/modules/RestaurantKafka_main.iml" group="RestaurantKafka" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RestaurantKafka_test.iml" filepath="$PROJECT_DIR$/.idea/modules/RestaurantKafka_test.iml" group="RestaurantKafka" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/customer.iml" filepath="$PROJECT_DIR$/.idea/modules/customer.iml" group="modules/customer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/customer/customer_main.iml" filepath="$PROJECT_DIR$/.idea/modules/customer/customer_main.iml" group="customer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/customer/customer_test.iml" filepath="$PROJECT_DIR$/.idea/modules/customer/customer_test.iml" group="customer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kitchen.iml" filepath="$PROJECT_DIR$/.idea/modules/kitchen.iml" group="modules/kitchen" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kitchen/kitchen_main.iml" filepath="$PROJECT_DIR$/.idea/modules/kitchen/kitchen_main.iml" group="kitchen" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kitchen/kitchen_test.iml" filepath="$PROJECT_DIR$/.idea/modules/kitchen/kitchen_test.iml" group="kitchen" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/modules.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/modules.iml" group="modules" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/customer/modules-customer_main.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/customer/modules-customer_main.iml" group="modules/customer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/customer/modules-customer_test.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/customer/modules-customer_test.iml" group="modules/customer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/kitchen/modules-kitchen_main.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/kitchen/modules-kitchen_main.iml" group="modules/kitchen" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/kitchen/modules-kitchen_test.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/kitchen/modules-kitchen_test.iml" group="modules/kitchen" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/modules_main.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/modules_main.iml" group="modules" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/modules_test.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/modules_test.iml" group="modules" />
+    </modules>
+  </component>
+</project>

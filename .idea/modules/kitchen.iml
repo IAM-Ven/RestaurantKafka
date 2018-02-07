@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":modules:kitchen" external.linked.project.path="$MODULE_DIR$/../../modules/kitchen" external.root.project.path="$MODULE_DIR$/../.." external.system.id="GRADLE" external.system.module.group="com.edi" external.system.module.version="0.0.1-SNAPSHOT" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../modules/kitchen">
+      <excludeFolder url="file://$MODULE_DIR$/../../kitchen/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../kitchen/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../kitchen/out" />
+      <excludeFolder url="file://$MODULE_DIR$/../../modules/kitchen/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../modules/kitchen/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../modules/kitchen/out" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
