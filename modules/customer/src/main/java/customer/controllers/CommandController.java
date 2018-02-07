@@ -23,14 +23,12 @@ public class CommandController {
     @PostMapping(value="/openTab")
         public void openTab(@RequestBody TabCreatedRequest request){
             CustomerCommand customerCommand=new CustomerCommand(request);
-            System.out.println("controler primio request: "+request.getName());
             customerService.createTabCreated(customerCommand);
 
         }
     @PostMapping(value="/closeTab")
         public void closeTab(@RequestBody TabClosedRequest request){
            CustomerCommand customerCommand=new CustomerCommand(request);
-        System.out.println("controler primio request: "+request.getTabId());
            customerService.createTabClosed(customerCommand);
         }
 

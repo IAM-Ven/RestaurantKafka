@@ -42,23 +42,20 @@ public class CustomerService {
         event.setTimeCreated(dateFormat.format(new Date()));
         event.setEventType(EventType.TAB_CREATED);
         Message<TabCreated> message= MessageBuilder.withPayload(event).build();
-        System.out.println("servis napravio event i message: "+event.getName()+" i nesta iz message: "+message.getPayload());
         eventProcessor.restaurant().send(message);
     }
 
     public void createTabClosed(CustomerCommand command){
         TabClosed event=new TabClosed();
         event.setTabId(command.getTabClosedRequest().getTabId());
+        event.setUuid(UUID.randomUUID());
         event.setTimeCreated(dateFormat.format(new Date()));
         event.setEventType(EventType.TAB_CLOSED);
         Message<TabClosed> message=MessageBuilder.withPayload(event).build();
-        System.out.println("servis napravio event i message: "+event.getTabId()+" i nesta iz message: "+message.getPayload());
         eventProcessor.restaurant().send(message);
     }
     @StreamListener(Channel.RESTAURANT_CHANNEL_IN_NAME)
     private void on(TabCreated event) {
-        System.out.println("listener");
-        System.out.println("listener cuo da ima event i evo nesta iz eventa: "+event.getName());
         if(event.getEventType()== EventType.TAB_CREATED){
             //list.add(new Tab(event.getName(),event.getTimeCreated(),event.getUuid().toString()));
             Tab tab=new Tab();
@@ -72,20 +69,24 @@ public class CustomerService {
 
     @StreamListener(Channel.RESTAURANT_CHANNEL_IN_NAME)
     private void on(TabClosed event) {
-        System.out.println("listener cuo da ima event i evo nesta iz eventa: "+event.getTabId());
         if(event.getEventType()== EventType.TAB_CLOSED){
+
+            list.stream()
+                    .filter(p->p.getId().equals(event.getTabId()))
+                    .findFirst()
+                    .ifPresent(p-> p.setOpen(false));
 //            list.stream().forEach(i->{
-//                if(i.getId()==event.getTabId())
+//                if(i.getId().equals(event.getTabId()))
 //                {
 //                    i.setOpen(false);
 //                }
 //            });
-            for(int i=0;i<list.size();i++)
-            {
-                if(list.get(i).getId().equals(event.getTabId())){
-                    list.get(i).setOpen(false);
-                }
-            }
+//            for(int i=0;i<list.size();i++)
+//            {
+//                if(list.get(i).getId().equals(event.getTabId())){
+//                    list.get(i).setOpen(false);
+//                }
+//            }
         }
     }
 

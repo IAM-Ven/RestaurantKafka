@@ -10,7 +10,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/modules" />
-            <option value="$PROJECT_DIR$/modules/common" />
             <option value="$PROJECT_DIR$/modules/customer" />
             <option value="$PROJECT_DIR$/modules/kitchen" />
           </set>
