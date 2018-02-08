@@ -3,10 +3,7 @@ package customer.services;
 import customer.aggregate.Tab;
 import customer.channelProperties.Channel;
 import customer.command.CustomerCommand;
-import customer.events.EventProcessor;
-import customer.events.EventType;
-import customer.events.TabClosed;
-import customer.events.TabCreated;
+import customer.events.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.Message;
@@ -54,6 +51,18 @@ public class CustomerService {
         Message<TabClosed> message=MessageBuilder.withPayload(event).build();
         eventProcessor.restaurant().send(message);
     }
+    public void createOrderPlaced(CustomerCommand command){
+        OrderPlaced event=new OrderPlaced();
+        event.setName(command.getOrderPlacedRequest().getName());
+        event.setTabId(command.getOrderPlacedRequest().getTabId());
+        event.setOrderType(command.getOrderPlacedRequest().getOrderType());
+        event.setOrderStatus(OrderStatus.PLACED);
+        event.setUuid(UUID.randomUUID());
+        event.setTimeCreated(dateFormat.format(new Date()));
+        event.setEventType(EventType.ORDER_PLACED);
+        Message<OrderPlaced> message= MessageBuilder.withPayload(event).build();
+        eventProcessor.restaurant().send(message);
+    }
     @StreamListener(Channel.RESTAURANT_CHANNEL_IN_NAME)
     private void on(TabCreated event) {
         if(event.getEventType()== EventType.TAB_CREATED){
@@ -89,5 +98,19 @@ public class CustomerService {
 //            }
         }
     }
+    @StreamListener(Channel.RESTAURANT_CHANNEL_IN_NAME)
+    private void on(OrderPlaced event) {
+        if(event.getEventType()== EventType.ORDER_PLACED){
+
+            list.stream()
+                    .filter(p->p.getId().equals(event.getTabId()))
+                    .findFirst()
+                    .ifPresent(p-> {
+                        if(p.isOpen()==true){
+                        p.getList().add(event.toString());}
+                                        });
+        }
+    }
+
 
 }

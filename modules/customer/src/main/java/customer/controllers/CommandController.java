@@ -1,6 +1,7 @@
 package customer.controllers;
 
 import customer.command.CustomerCommand;
+import customer.requests.OrderPlacedRequest;
 import customer.requests.TabClosedRequest;
 import customer.requests.TabCreatedRequest;
 import customer.services.CustomerService;
@@ -32,4 +33,9 @@ public class CommandController {
            customerService.createTabClosed(customerCommand);
         }
 
+    @PostMapping("/placeOrder")
+        public void placeOrder(@RequestBody OrderPlacedRequest request){
+            CustomerCommand customerCommand=new CustomerCommand(request);
+            customerService.createOrderPlaced(customerCommand);
+        }
 }
