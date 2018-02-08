@@ -1,9 +1,6 @@
 package customer.command;
 
-import customer.requests.OrderPlacedRequest;
-import customer.requests.Request;
-import customer.requests.TabClosedRequest;
-import customer.requests.TabCreatedRequest;
+import customer.requests.*;
 
 public class CustomerCommand {
     private Request request;
@@ -16,6 +13,8 @@ public class CustomerCommand {
     public CustomerCommand(OrderPlacedRequest request){
         this.request=request;
     }
+    public CustomerCommand(OrderAcceptedRequest request){this.request=request;}
+    public CustomerCommand(OrderDeclinedRequest request){this.request=request;}
     public TabCreatedRequest getTabCreatedRequest(){
         return (TabCreatedRequest) request;
     }
@@ -25,6 +24,11 @@ public class CustomerCommand {
     public OrderPlacedRequest getOrderPlacedRequest(){
         return  (OrderPlacedRequest) request;
     }
-
+    public OrderAcceptedRequest getOrderAcceptedRequest(){
+        return  (OrderAcceptedRequest) request;
+    }
+    public OrderDeclinedRequest getOrderDeclinedRequest(){
+        return  (OrderDeclinedRequest) request;
+    }
 
 }

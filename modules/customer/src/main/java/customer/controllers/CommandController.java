@@ -1,9 +1,7 @@
 package customer.controllers;
 
 import customer.command.CustomerCommand;
-import customer.requests.OrderPlacedRequest;
-import customer.requests.TabClosedRequest;
-import customer.requests.TabCreatedRequest;
+import customer.requests.*;
 import customer.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,4 +36,14 @@ public class CommandController {
             CustomerCommand customerCommand=new CustomerCommand(request);
             customerService.createOrderPlaced(customerCommand);
         }
+    @PostMapping("/acceptOrder")
+        public void acceptOrder(@RequestBody OrderAcceptedRequest request){
+        CustomerCommand customerCommand=new CustomerCommand(request);
+        customerService.createOrderAccepted(customerCommand);
+        }
+    @PostMapping("/declineOrder")
+    public void declineOrder(@RequestBody OrderDeclinedRequest request){
+        CustomerCommand customerCommand=new CustomerCommand(request);
+        customerService.createOrderDeclined(customerCommand);
+    }
 }

@@ -76,9 +76,14 @@ public class CustomerService {
                     Message<OrderPlaced> message= MessageBuilder.withPayload(event).build();
                     eventProcessor.restaurant().send(message);}
                 });
-
+    }
+    public void createOrderAccepted(CustomerCommand command){
 
     }
+    public void createOrderDeclined(CustomerCommand command){
+
+    }
+
     @StreamListener(Channel.RESTAURANT_CHANNEL_IN_NAME)
     private void on(TabCreated event) {
         if(event.getEventType()== EventType.TAB_CREATED){
