@@ -128,7 +128,7 @@ public class CustomerService {
                     .findFirst()
                     .ifPresent(p-> {
                         if(p.isOpen()==true){
-                        p.getList().add(order);}
+                        p.getOrders().add(order);}
                                         });
         }
     }
@@ -159,7 +159,7 @@ public class CustomerService {
             list.stream()
                     .filter(p->p.getId().equals(event.getTabId()))
                     .findFirst()
-                    .ifPresent(p-> { p.getList().stream().filter(k->k.getUuid().toString().equals(event.getOrderId()))
+                    .ifPresent(p-> { p.getOrders().stream().filter(k->k.getUuid().toString().equals(event.getOrderId()))
                                 .findFirst()
                                 .ifPresent(k->k.setOrderStatus(OrderStatus.SERVED));
                     });

@@ -76,7 +76,7 @@ public class KitchenService {
                     .findFirst()
                     .ifPresent(p-> {
                         if(p.isOpen()==true){
-                            p.getList().add(orderAg);}
+                            p.getOrders().add(orderAg);}
                     });
         }
     }

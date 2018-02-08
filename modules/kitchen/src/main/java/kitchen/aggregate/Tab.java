@@ -52,11 +52,11 @@ public class Tab {
         isOpen = open;
     }
 
-    public List<Order> getList() {
+    public List<Order> getOrders() {
         return orders;
     }
 
-    public void setList(List<Order> orders) {
+    public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
 }
