@@ -1,6 +1,5 @@
 package customer.events;
 
-import javax.naming.ldap.PagedResultsControl;
 import java.util.UUID;
 
 public class OrderPlaced implements ParentEvent {

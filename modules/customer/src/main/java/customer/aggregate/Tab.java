@@ -1,5 +1,6 @@
 package customer.aggregate;
 
+import com.sun.org.apache.xpath.internal.operations.Or;
 import jdk.nashorn.internal.runtime.arrays.ArrayLikeIterator;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ public class Tab {
     private String name;
     private String timeCreated;
     private String id;
-    private List<String> orders= new ArrayList();
+    private List<Order> orders= new ArrayList();
     private boolean isOpen;
 //    public Tab(String name,String timeCreated, String id) {
 //        this.name=name;
@@ -50,11 +51,11 @@ public class Tab {
         isOpen = open;
     }
 
-    public List<String> getList() {
+    public List<Order> getList() {
         return orders;
     }
 
-    public void setList(List<String> orders) {
+    public void setList(List<Order> orders) {
         this.orders = orders;
     }
 }

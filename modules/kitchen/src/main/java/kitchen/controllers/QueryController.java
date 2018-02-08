@@ -9,15 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping(value="/query/")
 public class QueryController {
     @Autowired
-    private KitchenService customerService;
-//    @GetMapping(value="/findAll")
-//    public List<Tab> findAll(){
-//        return customerService.getAll();
-//    }
+    private KitchenService kitchenService;
+    @GetMapping(value="/findAll")
+    public List<Tab> findAll(){
+        return kitchenService.getAll();
+    }
 
 
 }
