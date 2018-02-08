@@ -1,19 +1,19 @@
-package customer.command;
+package kitchen.command;
 
-import customer.requests.OrderPlacedRequest;
-import customer.requests.Request;
-import customer.requests.TabClosedRequest;
-import customer.requests.TabCreatedRequest;
+import kitchen.requests.OrderPlacedRequest;
+import kitchen.requests.Request;
+import kitchen.requests.TabClosedRequest;
+import kitchen.requests.TabCreatedRequest;
 
-public class CustomerCommand {
+public class KitchenCommand {
     private Request request;
-    public CustomerCommand(TabCreatedRequest request){
+    public KitchenCommand(TabCreatedRequest request){
         this.request=request;
     }
-    public CustomerCommand(TabClosedRequest request){
+    public KitchenCommand(TabClosedRequest request){
         this.request=request;
     }
-    public CustomerCommand(OrderPlacedRequest request){
+    public KitchenCommand(OrderPlacedRequest request){
         this.request=request;
     }
     public TabCreatedRequest getTabCreatedRequest(){
@@ -25,6 +25,5 @@ public class CustomerCommand {
     public OrderPlacedRequest getOrderPlacedRequest(){
         return  (OrderPlacedRequest) request;
     }
-
 
 }
