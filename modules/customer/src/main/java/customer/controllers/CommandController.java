@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value="/command/")
 public class CommandController {
 
-    //@Autowired
     CustomerService customerService;
     @Autowired
     public CommandController(CustomerService customerService){

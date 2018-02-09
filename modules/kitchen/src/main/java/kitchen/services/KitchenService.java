@@ -80,5 +80,46 @@ public class KitchenService {
                     });
         }
     }
+    @StreamListener(Channel.RESTAURANT_CHANNEL_IN_NAME)
+    private void on(OrderAccepted event) {
+        if(event.getEventType()== EventType.ORDER_ACCEPTED){
+            list.stream()
+                    .filter(p->p.getId().equals(event.getTabId()))
+                    .findFirst()
+                    .ifPresent(p-> { p.getOrders().stream().filter(k->k.getUuid().toString().equals(event.getOrderId()))
+                            .findFirst()
+                            .ifPresent(k->k.setOrderStatus(OrderStatus.ACCEPTED));
+                    });
+            OrderSold order=new OrderSold();
+            order.setUuid(UUID.randomUUID());
+            order.setTimeCreated(dateFormat.format(new Date()));
+            order.setEventType(EventType.ORDER_SOLD);
+            order.setOrderId(event.getUuid().toString());
+            order.setTabId(event.getTabId());
+            Message<OrderSold> message= MessageBuilder.withPayload(order).build();
+            eventProcessor.restaurant().send(message);
+        }
+
+    }
+    @StreamListener(Channel.RESTAURANT_CHANNEL_IN_NAME)
+    private void on(OrderDeclined event) {
+        if(event.getEventType()== EventType.ORDER_DECLINED){
+            list.stream()
+                    .filter(p->p.getId().equals(event.getTabId()))
+                    .findFirst()
+                    .ifPresent(p-> { p.getOrders().stream().filter(k->k.getUuid().toString().equals(event.getOrderId()))
+                            .findFirst()
+                            .ifPresent(k->k.setOrderStatus(OrderStatus.DECLINED));
+                    });
+            OrderRetrieved order=new OrderRetrieved();
+            order.setUuid(UUID.randomUUID());
+            order.setTimeCreated(dateFormat.format(new Date()));
+            order.setEventType(EventType.ORDER_RETRIEVED);
+            order.setOrderId(event.getUuid().toString());
+            order.setTabId(event.getTabId());
+            Message<OrderRetrieved> message= MessageBuilder.withPayload(order).build();
+            eventProcessor.restaurant().send(message);
+        }
+    }
 
 }

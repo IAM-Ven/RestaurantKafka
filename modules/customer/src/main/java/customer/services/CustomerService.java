@@ -73,15 +73,54 @@ public class CustomerService {
                 .findFirst()
                 .ifPresent(p-> {
                     if(p.isOpen()){
-                    Message<OrderPlaced> message= MessageBuilder.withPayload(event).build();
-                    eventProcessor.restaurant().send(message);}
+                        Message<OrderPlaced> message= MessageBuilder.withPayload(event).build();
+                        eventProcessor.restaurant().send(message);}
                 });
     }
     public void createOrderAccepted(CustomerCommand command){
+        OrderAccepted event=new OrderAccepted();
+        event.setUuid(UUID.randomUUID());
+        event.setEventType(EventType.ORDER_ACCEPTED);
+        event.setTimeCreated(dateFormat.format(new Date()));
+        event.setOrderId(command.getOrderAcceptedRequest().getOrderId());
+        event.setTabId(command.getOrderAcceptedRequest().getTabId());
+        list.stream()
+                .filter(p->p.getId().equals(event.getTabId()))
+                .findFirst()
+                .ifPresent(p-> {
+                    if(p.isOpen() && event.getOrderId().equals(command.getOrderAcceptedRequest().getOrderId())) {
+                        p.getOrders().stream().filter(k->k.getUuid().toString().equals(event.getOrderId()))
+                                .findFirst().ifPresent(k->
+                                        {if(k.getOrderStatus()==OrderStatus.SERVED){
+                                            Message<OrderAccepted> message=MessageBuilder.withPayload(event).build();
+                                            eventProcessor.restaurant().send(message);
+                                        }}
+                                );
+                    }
+                });
 
     }
     public void createOrderDeclined(CustomerCommand command){
-
+        OrderDeclined event=new OrderDeclined();
+        event.setUuid(UUID.randomUUID());
+        event.setEventType(EventType.ORDER_DECLINED);
+        event.setTimeCreated(dateFormat.format(new Date()));
+        event.setOrderId(command.getOrderDeclinedRequest().getOrderId());
+        event.setTabId(command.getOrderDeclinedRequest().getTabId());
+        list.stream()
+                .filter(p->p.getId().equals(event.getTabId()))
+                .findFirst()
+                .ifPresent(p-> {
+                    if(p.isOpen() && event.getOrderId().equals(command.getOrderDeclinedRequest().getOrderId())) {
+                        p.getOrders().stream().filter(k->k.getUuid().toString().equals(event.getOrderId()))
+                                .findFirst().ifPresent(k->
+                                {if(k.getOrderStatus()==OrderStatus.SERVED){
+                                    Message<OrderDeclined> message=MessageBuilder.withPayload(event).build();
+                                    eventProcessor.restaurant().send(message);
+                                }}
+                        );
+                    }
+                });
     }
 
     @StreamListener(Channel.RESTAURANT_CHANNEL_IN_NAME)
@@ -100,23 +139,10 @@ public class CustomerService {
     @StreamListener(Channel.RESTAURANT_CHANNEL_IN_NAME)
     private void on(TabClosed event) {
         if(event.getEventType()== EventType.TAB_CLOSED){
-
             list.stream()
                     .filter(p->p.getId().equals(event.getTabId()))
                     .findFirst()
                     .ifPresent(p-> p.setOpen(false));
-//            list.stream().forEach(i->{
-//                if(i.getId().equals(event.getTabId()))
-//                {
-//                    i.setOpen(false);
-//                }
-//            });
-//            for(int i=0;i<list.size();i++)
-//            {
-//                if(list.get(i).getId().equals(event.getTabId())){
-//                    list.get(i).setOpen(false);
-//                }
-//            }
         }
     }
     @StreamListener(Channel.RESTAURANT_CHANNEL_IN_NAME)
@@ -140,33 +166,36 @@ public class CustomerService {
     @StreamListener(Channel.RESTAURANT_CHANNEL_IN_NAME)
     private void on(OrderServed event) {
         if(event.getEventType()== EventType.ORDER_SERVED){
-           // System.out.println("evo nes iz liste : "+list.get(0).getList().get(0).getOrderStatus());
-            //System.out.println("event order id: "+event.getOrderId()+" iz liste iz orders id od ordera: "+list.get(0).getList().get(0).getUuid()+" potom od eventa tab id: "+event.getTabId()+" i id od taba ulisti: "+list.get(0).getId());
-
-            //list.get(0).getList().get(0).setOrderStatus(OrderStatus.SERVED);
-//            for(int i=0;i<list.size();i++){
-//                for(int j=0;j<list.get(i).getList().size();j++){
-//                    if(list.get(i).getList().get(j).getUuid().toString().equals(event.getOrderId())){
-//                        list.get(i).getList().get(j).setOrderStatus(OrderStatus.SERVED);
-//                    }
-//                }
-//            }
-//            for(int i=0;i<list.size();i++){
-//                if(list.get(i).getId().equals(event.getTabId()))
-//                {
-//                    for(int j=0;j<list.get(i).getList().size();j++)
-//                    {
-//                        if(list.get(i).getList().get(j).getUuid().equals(event.getOrderId()))
-//                            list.get(i).getList().get(j).setOrderStatus(OrderStatus.SERVED);
-//                    }
-//                }
-//            }
             list.stream()
                     .filter(p->p.getId().equals(event.getTabId()))
                     .findFirst()
                     .ifPresent(p-> { p.getOrders().stream().filter(k->k.getUuid().toString().equals(event.getOrderId()))
                                 .findFirst()
                                 .ifPresent(k->k.setOrderStatus(OrderStatus.SERVED));
+                    });
+        }
+    }
+    @StreamListener(Channel.RESTAURANT_CHANNEL_IN_NAME)
+    private void on(OrderAccepted event) {
+        if(event.getEventType()== EventType.ORDER_ACCEPTED){
+            list.stream()
+                    .filter(p->p.getId().equals(event.getTabId()))
+                    .findFirst()
+                    .ifPresent(p-> { p.getOrders().stream().filter(k->k.getUuid().toString().equals(event.getOrderId()))
+                            .findFirst()
+                            .ifPresent(k->k.setOrderStatus(OrderStatus.ACCEPTED));
+                    });
+        }
+    }
+    @StreamListener(Channel.RESTAURANT_CHANNEL_IN_NAME)
+    private void on(OrderDeclined event) {
+        if(event.getEventType()== EventType.ORDER_DECLINED){
+            list.stream()
+                    .filter(p->p.getId().equals(event.getTabId()))
+                    .findFirst()
+                    .ifPresent(p-> { p.getOrders().stream().filter(k->k.getUuid().toString().equals(event.getOrderId()))
+                            .findFirst()
+                            .ifPresent(k->k.setOrderStatus(OrderStatus.DECLINED));
                     });
         }
     }
